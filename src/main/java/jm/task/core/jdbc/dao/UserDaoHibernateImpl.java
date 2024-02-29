@@ -39,4 +39,10 @@ public class UserDaoHibernateImpl implements UserDao {
     public void cleanUsersTable() {
 
     }
+
+    @Override
+    public void closeConnection(){
+
+    }
+
 }
