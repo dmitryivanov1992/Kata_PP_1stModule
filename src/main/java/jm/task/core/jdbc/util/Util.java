@@ -1,5 +1,9 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import java.sql.Driver;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +15,7 @@ public class Util {
     private final static String PASSWORD = "root";
     private static Connection connection;
 
-    public static Connection getConnection() {
+    public static Connection getConnectionJDBC() {
         try {
             Driver driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);
@@ -22,4 +26,12 @@ public class Util {
         }
         return connection;
     }
+
+    public static SessionFactory getHibernateFactory(){
+        return new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(User.class)
+                .buildSessionFactory();
+    }
+
 }

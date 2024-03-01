@@ -1,7 +1,9 @@
 package jm.task.core.jdbc;
 
+
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserServiceImpl;
+
 
 import java.util.List;
 
@@ -18,5 +20,6 @@ public class Main {
         allUsers.forEach(System.out::println);
         userService.cleanUsersTable();
         userService.dropUsersTable();
+        userService.closeConnection();
     }
 }
