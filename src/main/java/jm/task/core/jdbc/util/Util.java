@@ -27,9 +27,17 @@ public class Util {
         return connection;
     }
 
-    public static SessionFactory getHibernateFactory(){
+    public static SessionFactory getSessionFactory() {
         return new Configuration()
                 .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(User.class)
+                .buildSessionFactory();
+    }
+
+    public static SessionFactory getSessionFactory(boolean createOrDropTable) {
+        return new Configuration()
+                .configure("hibernate.cfg.xml")
+                .setProperty("hibernate.hbm2ddl.auto", createOrDropTable ? "create" : "drop")
                 .addAnnotatedClass(User.class)
                 .buildSessionFactory();
     }
