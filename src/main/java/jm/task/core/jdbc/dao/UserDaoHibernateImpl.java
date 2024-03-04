@@ -41,8 +41,10 @@ public class UserDaoHibernateImpl implements UserDao {
             System.out.println("User с именем — " + name + " добавлен в базу данных");
         } catch (PersistenceException ex) {
             transaction.rollback();
+        } finally {
+            session.close();
         }
-        session.close();
+
     }
 
     @Override
@@ -54,8 +56,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (PersistenceException ex) {
             transaction.rollback();
+        } finally {
+            session.close();
         }
-        session.close();
     }
 
     @Override
@@ -68,8 +71,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (PersistenceException ex) {
             transaction.rollback();
+        } finally {
+            session.close();
         }
-        session.close();
         return allUsers;
     }
 
@@ -82,8 +86,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
         } catch (PersistenceException ex) {
             transaction.rollback();
+        }finally {
+            session.close();
         }
-        session.close();
     }
 
     @Override
